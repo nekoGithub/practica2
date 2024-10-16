@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de productos</title>
+    <style>
+        .form {
+            align-items: center;
+            text-align: center;
+        }
+
+        .group {
+            margin: 20px auto;
+        }
+
+        .group .grupo-nombre {
+            margin-right: 30px;
+        }
+
+        .group .grupo-apellido {
+            margin-right: 35px;
+        }
+
+        .group .grupo-ape {
+            margin-right: 12px;
+        }
+        .group .grupo-precio {
+            margin-right: -15px;
+        }
+
+        .group .grupo-pre {
+            margin-left: 62px;
+        }
+        .group .grupo-select {
+            margin-right: 40px;
+        }
+
+        .group .grupo-option {
+            margin-left: -10px;
+            width: 180px;
+        }
+
+        .form .btn {
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+        .div-tabla{
+            align-items: center;
+            text-align: center;
+        }
+        .div-tabla table{
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .div-tabla table th,td{
+            padding: 10px;
+            text-align: left;
+        }
+        .div-tabla table th{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Registro de productos</h1>
+    <form class="form" action="{{ url_for('procesaPro') }}" method="POST">
+        <div class="group">
+            <label class="grupo-nombre" for="">Producto:</label>
+            <input type="text" name="producto" id="producto">
+        </div>
+        <div class="group">
+            <label class="grupo-select" for="">Categoria:</label>
+            <select class="grupo-option" name="categoria" id="categoria">
+                <option value="Ropa">Ropa</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Alimentos y bebidas">Alimentos y bebidas</option>
+                <option value="Hogar y decoración">Hogar y decoración</option>
+                <option value="Libros">Libros</option>
+            </select>
+        </div>
+        <div class="group">
+            <label class="grupo-apellido" for="">Existencia:</label>
+            <input class="grupo-ape" type="number" name="existencia" id="existencia">
+        </div>
+        <div class="group">
+            <label class="grupo-precio" for="">Precio:</label>
+            <input class="grupo-pre" type="number" name="precio" id="precio">
+        </div>
+        <input class="btn" type="submit" value="Envia">
+    </form>
+    <div class="div-tabla">
+        <a href="{{ url_for('vaciarPro') }}">Vaciar tabla</a>
+        <h3>Contenido de los productos</h3>
+        {% if productos %}
+        <table border="1">
+            <tr>
+                <th>Producto</th>
+                <th>Categoria</th>
+                <th>Existencia</th>
+                <th>Precio</th>
+            </tr>
+            {% for item in productos %}
+            <tr>
+                <td>{{ item.producto }}</td>
+                <td>{{ item.categoria }}</td>
+                <td>{{ item.existencia }}</td>
+                <td>{{ item.precio }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No hay productos </p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

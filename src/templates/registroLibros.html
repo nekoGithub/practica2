@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Libros</title>
+    <style>
+        .form {
+            align-items: center;
+            text-align: center;
+        }
+
+        .group {
+            margin: 20px auto;
+        }
+
+        .group .grupo-nombre {
+            margin-right: 30px;
+        }
+
+        .group .grupo-apellido {
+            margin-right: 15px;
+        }
+
+        .group .grupo-ape {
+            margin-left: 15px;
+        }
+
+        .group .grupo-email-label {
+            margin-right: 30px;
+        }
+
+        .group .grupo-email {
+            margin-right: 27px;
+        }
+
+        .group .grupo-select {
+            margin-right: 40px;
+        }
+
+        .group .grupo-option {
+            margin-left: 10px;
+            width: 180px;
+        }
+
+        .form .btn {
+            margin-right: 30px;
+            margin-bottom: 20px;
+        }
+
+        .div-tabla {
+            align-items: center;
+            text-align: center;
+        }
+
+        .div-tabla table {
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .div-tabla table th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .div-tabla table th {
+            background-color: black;
+            color: white;
+        }
+        .form .flex{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .form .flex .flex-1{
+            margin-right: 30px;
+        }
+        .form .flex .flex-2{
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            margin-right: 90px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Registro de Libros</h1>
+    <form class="form" action="{{ url_for('procesaLib') }}" method="POST">
+        <div class="group">
+            <label class="grupo-nombre" for="">Titulo:</label>
+            <input type="text" name="titulo" id="titulo" required>
+        </div>
+        <div class="group">
+            <label class="grupo-apellido" for="">Autor:</label>
+            <input class="grupo-ape" type="text" name="autor" id="autor" required>
+        </div>
+        <div class="group">
+            <label class="grupo-email-label" for="">Resumen:</label>
+            <textarea class="grupo-email" name="resumen" id="resumen" required></textarea>
+        </div>
+        <div class="flex">
+            <label class="flex-1" for="">Medio:</label>
+            <div class="flex-2">
+                <div>
+                    <input type="radio" name="medio" value="Fisico" checked>
+                    <label for="">Fisico</label>
+                </div>
+                <div>
+                    <input type="radio" name="medio" value="Magentico">
+                    <label for="">Magentico</label>
+                </div>
+            </div>
+        </div>
+        <input class="btn" type="submit" value="Enviar">
+    </form>
+    <div class="div-tabla">
+        <a href="{{ url_for('vaciarLib') }}">Vaciar tabla</a>
+        <h3>Contenido de Libros</h3>
+        {% if libros %}
+        <table border="1">
+            <tr>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Resumen</th>
+                <th>Medio</th>
+            </tr>
+            {% for item in libros %}
+            <tr>
+                <td>{{ item.titulo }}</td>
+                <td>{{ item.autor }}</td>
+                <td>{{ item.resumen }}</td>
+                <td>{{ item.medio }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No hay Libros </p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

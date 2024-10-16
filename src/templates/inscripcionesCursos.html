@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscripcion en curso</title>
+    <style>
+        .form {
+            align-items: center;
+            text-align: center;
+        }
+
+        .group {
+            margin: 20px auto;
+        }
+
+        .group .grupo-nombre {
+            margin-right: 30px;
+        }
+
+        .group .grupo-apellido {
+            margin-right: 35px;
+        }
+
+        .group .grupo-ape {
+            margin-right: 12px;
+        }
+
+        .group .grupo-select {
+            margin-right: 40px;
+        }
+
+        .group .grupo-option {
+            margin-left: 10px;
+            width: 180px;
+        }
+
+        .form .btn {
+            margin-right: 30px;
+        }
+        .div-tabla{
+            align-items: center;
+            text-align: center;
+        }
+        .div-tabla table{
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .div-tabla table th,td{
+            padding: 10px;
+            text-align: left;
+        }
+        .div-tabla table th{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Inscripcion en curso</h1>
+    <form class="form" action="{{ url_for('procesaInc') }}" method="POST">
+        <div class="group">
+            <label class="grupo-nombre" for="">Nombre:</label>
+            <input type="text" name="nombre" id="nombre">
+        </div>
+        <div class="group">
+            <label class="grupo-apellido" for="">Apellidos:</label>
+            <input class="grupo-ape" type="text" name="apellido" id="apellido">
+        </div>
+        <div class="group">
+            <label class="grupo-select" for="">Curso:</label>
+            <select class="grupo-option" name="curso" id="curso">
+                <option value="Fisica">Fisica</option>
+                <option value="Calculo">Calculo</option>
+                <option value="Quimica">Quimica</option>
+                <option value="Programacion">Programacion</option>
+            </select>
+        </div>
+        <input class="btn" type="submit" value="Envia">
+    </form>
+    <div class="div-tabla">
+        <a href="{{ url_for('vaciarInc') }}">Vaciar tabla</a>
+        <h3>Contenido de los inscritos</h3>
+        {% if inscripcion %}
+        <table border="1">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Curso</th>
+            </tr>
+            {% for item in inscripcion %}
+            <tr>
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.apellido }}</td>
+                <td>{{ item.curso }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No hay inscritos </p>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

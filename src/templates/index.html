@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica 2</title>
+    <style>
+        *{
+            background-color: #e69e21;
+        }
+        h1{
+            text-align: center;
+        }
+        h2{
+            text-align: center;
+        }
+        .flex{
+            margin: 30px auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        .flex a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>    
+<body>
+    <h1>Aplicacion web con Flask - Brayan Sonco Machaca</h1>
+    <h2>Menu de opciones</h2>
+    <header class="flex">
+        <a href="{{ url_for('ins') }}">INSCRIPCION DE CURSOS</a>
+        <a href="{{ url_for('usu') }}">REGISTRO DE USUARIOS</a>
+        <a href="{{ url_for('lib') }}">REGISTRO DE LIBROS</a>
+        <a href="{{ url_for('pro') }}">REGISTRO DE PRODUCTOS</a>
+    </header>
+</body>
+</html>
